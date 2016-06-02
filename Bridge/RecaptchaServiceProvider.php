@@ -31,9 +31,11 @@ class RecaptchaServiceProvider implements ServiceProviderInterface
 
         // add loader for EWZ Template
         if (isset($app['twig'])) {
-            $path = dirname(__FILE__).'/../Resources/views/Form';
-            $app['twig.loader']->addLoader(new \Twig_Loader_Filesystem($path));
-
+            $app['twig.loader.filesystem'] = $app->share($app->extend('twig.loader.filesystem', function ($loader, $app) {
+                $path = dirname(__FILE__).'/../Resources/views/Form';
+                $loader->addPath($path);
+                return $loader;
+            }));
             $app['twig.form.templates'] = array_merge(
                 $app['twig.form.templates'],
                 array('ewz_recaptcha_widget.html.twig')

@@ -155,4 +155,9 @@ class EWZRecaptchaType extends AbstractType
     {
         return $this->publicKey;
     }
+
+    public function getName()
+    {
+        return 'ewz_recaptcha';
+    }
 }

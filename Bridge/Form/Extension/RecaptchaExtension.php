@@ -44,4 +44,9 @@ class RecaptchaExtension extends AbstractExtension
             )
         );
     }
+
+    public function getExtendedType()
+    {
+        return FormType::class;
+    }
 }
